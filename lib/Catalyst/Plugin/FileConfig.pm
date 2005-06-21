@@ -9,12 +9,12 @@ use NEXT;
 use YAML 'LoadFile';
 use Path::Class 'file';
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 NAME
 
-Catalyst::Plugin::FileConfig - Configure your Catalyst application via a config 
-file
+Catalyst::Plugin::FileConfig - Configure your Catalyst application via an external
+config file
 
 =head1 SYNOPSIS
 
@@ -51,7 +51,7 @@ sub setup {
 	$config_file = file($c->config->{'home'}, $config_file) unless file($config_file)->is_absolute;
 	my $options = LoadFile($config_file);
 	foreach my $key (keys %$options) {
-		if ($key =~ /^Catalyst::/) {
+		if (isa($key, 'Catalyst::Base')) {
 			$key->config(delete $options->{$key});
 		}
 	}

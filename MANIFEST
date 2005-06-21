@@ -3,5 +3,6 @@ Makefile.PL
 MANIFEST
 README
 t/Catalyst-Plugin-FileConfig.t
+t/config.yml
 lib/Catalyst/Plugin/FileConfig.pm
 META.yml                                 Module meta-data (added by MakeMaker)
